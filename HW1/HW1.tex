@@ -1,0 +1,1083 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={HW1},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{HW1}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{echo =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(fds)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 패키지 'fds'는 R 버전 4.1.3에서 작성되었습니다
+\end{verbatim}
+
+\begin{verbatim}
+## 필요한 패키지를 로딩중입니다: rainbow
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 패키지 'rainbow'는 R 버전 4.1.3에서 작성되었습니다
+\end{verbatim}
+
+\begin{verbatim}
+## 필요한 패키지를 로딩중입니다: MASS
+\end{verbatim}
+
+\begin{verbatim}
+## 필요한 패키지를 로딩중입니다: pcaPP
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 패키지 'pcaPP'는 R 버전 4.1.3에서 작성되었습니다
+\end{verbatim}
+
+\begin{verbatim}
+## 필요한 패키지를 로딩중입니다: RCurl
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 패키지 'RCurl'는 R 버전 4.1.3에서 작성되었습니다
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(fda)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 패키지 'fda'는 R 버전 4.1.3에서 작성되었습니다
+\end{verbatim}
+
+\begin{verbatim}
+## 필요한 패키지를 로딩중입니다: splines
+\end{verbatim}
+
+\begin{verbatim}
+## 필요한 패키지를 로딩중입니다: deSolve
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 패키지 'deSolve'는 R 버전 4.1.3에서 작성되었습니다
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 다음의 패키지를 부착합니다: 'fda'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:graphics':
+## 
+##     matplot
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 패키지 'ggplot2'는 R 버전 4.1.2에서 작성되었습니다
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(fields)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 패키지 'fields'는 R 버전 4.1.3에서 작성되었습니다
+\end{verbatim}
+
+\begin{verbatim}
+## 필요한 패키지를 로딩중입니다: spam
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 패키지 'spam'는 R 버전 4.1.3에서 작성되었습니다
+\end{verbatim}
+
+\begin{verbatim}
+## Spam version 2.9-1 (2022-08-07) is loaded.
+## Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+## and overview of this package.
+## Help for individual functions is also obtained by adding the
+## suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 다음의 패키지를 부착합니다: 'spam'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     backsolve, forwardsolve
+\end{verbatim}
+
+\begin{verbatim}
+## 필요한 패키지를 로딩중입니다: viridis
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 패키지 'viridis'는 R 버전 4.1.2에서 작성되었습니다
+\end{verbatim}
+
+\begin{verbatim}
+## 필요한 패키지를 로딩중입니다: viridisLite
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 패키지 'viridisLite'는 R 버전 4.1.2에서 작성되었습니다
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Try help(fields) to get started.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(expm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 패키지 'expm'는 R 버전 4.1.3에서 작성되었습니다
+\end{verbatim}
+
+\begin{verbatim}
+## 필요한 패키지를 로딩중입니다: Matrix
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 다음의 패키지를 부착합니다: 'Matrix'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:spam':
+## 
+##     det
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 다음의 패키지를 부착합니다: 'expm'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:Matrix':
+## 
+##     expm
+\end{verbatim}
+
+\hypertarget{chapter-1}{%
+\section{Chapter 1}\label{chapter-1}}
+
+\hypertarget{problem-1}{%
+\subsection{Problem 1}\label{problem-1}}
+
+\hypertarget{a-convert-the-pinch-data-to-functional-objects-using-15-b-splines-of-order-four-cubic-splines-and-plot-the-20-smoothed-curves-on-one-graph.}{%
+\subsubsection{a) Convert the pinch data to functional objects using 15
+B-splines of order four (cubic splines) and plot the 20 smoothed curves
+on one
+graph.}\label{a-convert-the-pinch-data-to-functional-objects-using-15-b-splines-of-order-four-cubic-splines-and-plot-the-20-smoothed-curves-on-one-graph.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{time }\OtherTok{=}\NormalTok{ pinchtime}
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.3}\NormalTok{),}\AttributeTok{nbasis=}\DecValTok{15}\NormalTok{, }\AttributeTok{norder =} \DecValTok{4}\NormalTok{)}
+\NormalTok{pinch.F}\OtherTok{\textless{}{-}}\FunctionTok{Data2fd}\NormalTok{(time, pinch, basis)}
+\FunctionTok{plot}\NormalTok{(pinch.F)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\hypertarget{b-calculate-the-pointwise-mean-and-sd-and-add-them-to-the-plot.}{%
+\subsubsection{b) Calculate the pointwise mean and SD and add them to
+the
+plot.}\label{b-calculate-the-pointwise-mean-and-sd-and-add-them-to-the-plot.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean.fd}\NormalTok{(pinch.F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $coefs
+##              mean
+##  [1,] -0.19640318
+##  [2,]  0.53667546
+##  [3,] -1.49889015
+##  [4,]  2.68956848
+##  [5,] 10.92286613
+##  [6,]  6.04721931
+##  [7,]  2.28283849
+##  [8,]  0.35324569
+##  [9,] -0.09900356
+## [10,] -0.16429367
+## [11,] -0.11493253
+## [12,] -0.15313847
+## [13,] -0.10891391
+## [14,] -0.15580597
+## [15,] -0.12331208
+## 
+## $basis
+## $call
+## basisfd(type = type, rangeval = rangeval, nbasis = nbasis, params = params, 
+##     dropind = dropind, quadvals = quadvals, values = values, 
+##     basisvalues = basisvalues)
+## 
+## $type
+## [1] "bspline"
+## 
+## $rangeval
+## [1] 0.0 0.3
+## 
+## $nbasis
+## [1] 15
+## 
+## $params
+##  [1] 0.025 0.050 0.075 0.100 0.125 0.150 0.175 0.200 0.225 0.250 0.275
+## 
+## $dropind
+## NULL
+## 
+## $quadvals
+## NULL
+## 
+## $values
+## list()
+## 
+## $basisvalues
+## list()
+## 
+## $names
+##  [1] "bspl4.1"  "bspl4.2"  "bspl4.3"  "bspl4.4"  "bspl4.5"  "bspl4.6" 
+##  [7] "bspl4.7"  "bspl4.8"  "bspl4.9"  "bspl4.10" "bspl4.11" "bspl4.12"
+## [13] "bspl4.13" "bspl4.14" "bspl4.15"
+## 
+## attr(,"class")
+## [1] "basisfd"
+## 
+## $fdnames
+## $fdnames$time
+##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+##  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
+##  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
+##  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
+##  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
+##  [91]  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107 108
+## [109] 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126
+## [127] 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
+## [145] 145 146 147 148 149 150 151
+## 
+## $fdnames$reps
+## [1] "mean"
+## 
+## $fdnames$values
+## [1] "mean value"
+## 
+## 
+## attr(,"class")
+## [1] "fd"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{std.fd}\NormalTok{(pinch.F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $coefs
+##              [,1]
+##  [1,]  0.07975281
+##  [2,]  0.09865960
+##  [3,] -0.08021130
+##  [4,]  0.95808616
+##  [5,]  0.64742807
+##  [6,]  1.11728335
+##  [7,]  0.49878254
+##  [8,]  0.32483098
+##  [9,]  0.11764947
+## [10,]  0.12235584
+## [11,]  0.06434126
+## [12,]  0.08597867
+## [13,]  0.08325722
+## [14,]  0.07574510
+## [15,]  0.07045293
+## 
+## $basis
+## $call
+## basisfd(type = type, rangeval = rangeval, nbasis = nbasis, params = params, 
+##     dropind = dropind, quadvals = quadvals, values = values, 
+##     basisvalues = basisvalues)
+## 
+## $type
+## [1] "bspline"
+## 
+## $rangeval
+## [1] 0.0 0.3
+## 
+## $nbasis
+## [1] 15
+## 
+## $params
+##  [1] 0.025 0.050 0.075 0.100 0.125 0.150 0.175 0.200 0.225 0.250 0.275
+## 
+## $dropind
+## NULL
+## 
+## $quadvals
+## NULL
+## 
+## $values
+## list()
+## 
+## $basisvalues
+## list()
+## 
+## $names
+##  [1] "bspl4.1"  "bspl4.2"  "bspl4.3"  "bspl4.4"  "bspl4.5"  "bspl4.6" 
+##  [7] "bspl4.7"  "bspl4.8"  "bspl4.9"  "bspl4.10" "bspl4.11" "bspl4.12"
+## [13] "bspl4.13" "bspl4.14" "bspl4.15"
+## 
+## attr(,"class")
+## [1] "basisfd"
+## 
+## $fdnames
+## $fdnames$time
+##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+##  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
+##  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
+##  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
+##  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
+##  [91]  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107 108
+## [109] 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126
+## [127] 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
+## [145] 145 146 147 148 149 150 151
+## 
+## $fdnames$`Std. Dev.`
+##  [1] "rep1"  "rep2"  "rep3"  "rep4"  "rep5"  "rep6"  "rep7"  "rep8"  "rep9" 
+## [10] "rep10" "rep11" "rep12" "rep13" "rep14" "rep15" "rep16" "rep17" "rep18"
+## [19] "rep19" "rep20"
+## 
+## $fdnames$`Std. Dev. values`
+## [1] "value"
+## 
+## 
+## attr(,"class")
+## [1] "fd"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(pinch.F, }\AttributeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{mean.fd}\NormalTok{(pinch.F), }\AttributeTok{lwd =}\DecValTok{2}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{std.fd}\NormalTok{(pinch.F), }\AttributeTok{lwd =}\DecValTok{2}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\hypertarget{c-graph-the-perspective-and-contour-plots-of-the-sample-covariance-function-ux2c6ct-s-of-the-pinch-curves.}{%
+\subsubsection{c) Graph the perspective and contour plots of the sample
+covariance function ˆc(t, s) of the pinch
+curves.}\label{c-graph-the-perspective-and-contour-plots-of-the-sample-covariance-function-ux2c6ct-s-of-the-pinch-curves.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pinch\_var}\OtherTok{\textless{}{-}}\FunctionTok{var.fd}\NormalTok{(pinch.F)}
+\NormalTok{pts}\OtherTok{\textless{}{-}}\FunctionTok{seq}\NormalTok{(}\AttributeTok{from=}\DecValTok{0}\NormalTok{, }\AttributeTok{to=}\FloatTok{0.3}\NormalTok{, }\AttributeTok{length =} \DecValTok{50}\NormalTok{)}
+\NormalTok{pinch\_mat }\OtherTok{=} \FunctionTok{eval.bifd}\NormalTok{(pts, pts, pinch\_var)}
+\FunctionTok{persp}\NormalTok{(pts, pts, pinch\_mat)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{contour}\NormalTok{(pts, pts, pinch\_mat)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-3-2.pdf}
+
+\hypertarget{d-graph-the-first-four-efpcs-of-the-pinch-data.-how-many-components-do-you-need-to-explain-90-of-variation}{%
+\subsubsection{d) Graph the first four EFPC's of the pinch data. How
+many components do you need to explain 90\% of
+variation?}\label{d-graph-the-first-four-efpcs-of-the-pinch-data.-how-many-components-do-you-need-to-explain-90-of-variation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pinch.pca }\OtherTok{=} \FunctionTok{pca.fd}\NormalTok{(pinch.F, }\AttributeTok{nharm=}\DecValTok{4}\NormalTok{)}
+\NormalTok{pinch.pca}\SpecialCharTok{$}\NormalTok{varprop}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.67408784 0.24791744 0.04585583 0.01878534
+\end{verbatim}
+
+We need 2 components to explain 90\% of variation.
+
+\hypertarget{problem-2}{%
+\subsection{Problem 2}\label{problem-2}}
+
+\hypertarget{a-on-one-graph-plot-the-interest-rates-xtj-for-january-1982-and-for-june-2009-against-the-maturity-terms-tj-.-how-do-the-interest-rates-in-these-two-months-compare}{%
+\subsubsection{a) On one graph, plot the interest rates x(tj ) for
+January 1982 and for June 2009 against the maturity terms tj . How do
+the interest rates in these two months
+compare?}\label{a-on-one-graph-plot-the-interest-rates-xtj-for-january-1982-and-for-june-2009-against-the-maturity-terms-tj-.-how-do-the-interest-rates-in-these-two-months-compare}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield }\OtherTok{=}\NormalTok{ FedYieldcurve}
+\NormalTok{terms }\OtherTok{=}\NormalTok{ yield}\SpecialCharTok{$}\NormalTok{x}
+\FunctionTok{plot}\NormalTok{(terms, yield}\SpecialCharTok{$}\NormalTok{y[,}\DecValTok{1}\NormalTok{], }\AttributeTok{pch=}\DecValTok{15}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Yield"}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{16}\NormalTok{))}
+\FunctionTok{points}\NormalTok{(terms, yield}\SpecialCharTok{$}\NormalTok{y[,}\DecValTok{330}\NormalTok{], }\AttributeTok{pch=}\DecValTok{16}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+The interest rates for January 1982 is much bigger than the interest
+rates for June 2009.
+
+\hypertarget{b-convert-the-yield-data-to-functional-objects-using-bspline-basis-with-four-basis-functions.-calculate-and-plot-the-the-mean-yield-function.-what-is-the-average-behavior-of-interest-rates-as-a-function-of-the-maturity}{%
+\subsubsection{b) Convert the yield data to functional objects using
+bspline basis with four basis functions. Calculate and plot the the mean
+yield function. What is the average behavior of interest rates as a
+function of the
+maturity?}\label{b-convert-the-yield-data-to-functional-objects-using-bspline-basis-with-four-basis-functions.-calculate-and-plot-the-the-mean-yield-function.-what-is-the-average-behavior-of-interest-rates-as-a-function-of-the-maturity}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield\_data }\OtherTok{=}\NormalTok{ yield}\SpecialCharTok{$}\NormalTok{y}
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{4}\NormalTok{)}
+\NormalTok{yield.F }\OtherTok{\textless{}{-}} \FunctionTok{Data2fd}\NormalTok{(terms, yield\_data, basis)}
+\FunctionTok{plot}\NormalTok{(yield.F)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(yield.F, }\AttributeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{mean.fd}\NormalTok{(yield.F), }\AttributeTok{lwd =}\DecValTok{4}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean.fd}\NormalTok{(yield.F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $coefs
+##              mean
+## [1,]  5.185258259
+## [2,]  8.549438361
+## [3,]  7.053882562
+## [4,] -0.007704886
+## 
+## $basis
+## $call
+## basisfd(type = type, rangeval = rangeval, nbasis = nbasis, params = params, 
+##     dropind = dropind, quadvals = quadvals, values = values, 
+##     basisvalues = basisvalues)
+## 
+## $type
+## [1] "bspline"
+## 
+## $rangeval
+## [1]   0 330
+## 
+## $nbasis
+## [1] 4
+## 
+## $params
+## NULL
+## 
+## $dropind
+## NULL
+## 
+## $quadvals
+## NULL
+## 
+## $values
+## list()
+## 
+## $basisvalues
+## list()
+## 
+## $names
+## [1] "bspl4.1" "bspl4.2" "bspl4.3" "bspl4.4"
+## 
+## attr(,"class")
+## [1] "basisfd"
+## 
+## $fdnames
+## $fdnames$time
+## [1] "3"   "6"   "12"  "60"  "84"  "120"
+## 
+## $fdnames$reps
+## [1] "mean"
+## 
+## $fdnames$values
+## [1] "mean value"
+## 
+## 
+## attr(,"class")
+## [1] "fd"
+\end{verbatim}
+
+It increases as time increases and then decreases at a certain point.
+This curve is well known as a yield curve.
+
+\hypertarget{c-plot-the-first-principal-component-of-the-interest-rate-curves.-what-percentage-of-variance-does-this-component-explain-interpret-the-plot-and-the-percentage-of-variance.}{%
+\subsubsection{c) Plot the first principal component of the interest
+rate curves. What percentage of variance does this component explain?
+Interpret the plot and the percentage of
+variance.}\label{c-plot-the-first-principal-component-of-the-interest-rate-curves.-what-percentage-of-variance-does-this-component-explain-interpret-the-plot-and-the-percentage-of-variance.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield.pca }\OtherTok{=} \FunctionTok{pca.fd}\NormalTok{(yield.F, }\AttributeTok{nharm=}\DecValTok{1}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(yield.pca}\SpecialCharTok{$}\NormalTok{harmonics)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield.pca}\SpecialCharTok{$}\NormalTok{varprop}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9999981
+\end{verbatim}
+
+The the component explains 99.99981\% of the varaince. It means that it
+can be well explained by bspline basis.
+
+\hypertarget{problem-6}{%
+\subsection{Problem 6}\label{problem-6}}
+
+Since
+
+\hypertarget{chapter-2}{%
+\section{Chapter 2}\label{chapter-2}}
+
+\hypertarget{problem-1-1}{%
+\subsection{Problem 1}\label{problem-1-1}}
+
+Since
+
+\hypertarget{problem-2-1}{%
+\subsection{Problem 2}\label{problem-2-1}}
+
+\hypertarget{a-smooth-the-interest-rates-yields-in-january-1982-using-a-bspline-basis-with-four-basis-functions.-plot-the-raw-and-smoothed-interest-rates-on-one-graph.}{%
+\subsubsection{a) Smooth the interest rates (yields) in January 1982
+using a B--spline basis with four basis functions. Plot the raw and
+smoothed interest rates on one
+graph.}\label{a-smooth-the-interest-rates-yields-in-january-1982-using-a-bspline-basis-with-four-basis-functions.-plot-the-raw-and-smoothed-interest-rates-on-one-graph.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield }\OtherTok{=}\NormalTok{ FedYieldcurve}
+\NormalTok{terms }\OtherTok{=}\NormalTok{ yield}\SpecialCharTok{$}\NormalTok{x}
+\NormalTok{yield\_data }\OtherTok{=}\NormalTok{ yield}\SpecialCharTok{$}\NormalTok{y[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{4}\NormalTok{)}
+\NormalTok{yield\_smooth }\OtherTok{\textless{}{-}} \FunctionTok{smooth.basis}\NormalTok{(terms, yield\_data, basis)}
+\FunctionTok{plot}\NormalTok{(terms, yield}\SpecialCharTok{$}\NormalTok{y[,}\DecValTok{1}\NormalTok{], }\AttributeTok{pch=}\DecValTok{15}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Yield"}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{16}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(yield\_smooth, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\hypertarget{b-refit-the-january-1982-yields-using-a-penalized-smoothing-based-on-six-basis-functions-as-many-as-data-points-with-with-the-smoothing-parameter-ux3bb-1-and-the-second-derivative-as-the-penalty-operator.-add-the-smooth-in-red-to-the-graph-you-obtained-in-part-a-and-comment-on-the-result.}{%
+\subsubsection{b) Re--fit the January 1982 yields using a penalized
+smoothing based on six basis functions (as many as data points) with
+with the smoothing parameter λ = 1, and the second derivative as the
+penalty operator. Add the smooth in red to the graph you obtained in
+part (a) and comment on the
+result.}\label{b-refit-the-january-1982-yields-using-a-penalized-smoothing-based-on-six-basis-functions-as-many-as-data-points-with-with-the-smoothing-parameter-ux3bb-1-and-the-second-derivative-as-the-penalty-operator.-add-the-smooth-in-red-to-the-graph-you-obtained-in-part-a-and-comment-on-the-result.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield }\OtherTok{=}\NormalTok{ FedYieldcurve}
+\NormalTok{terms }\OtherTok{=}\NormalTok{ yield}\SpecialCharTok{$}\NormalTok{x}
+\NormalTok{yield\_data }\OtherTok{=}\NormalTok{ yield}\SpecialCharTok{$}\NormalTok{y[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{4}\NormalTok{)}
+\NormalTok{yield\_smooth }\OtherTok{\textless{}{-}} \FunctionTok{smooth.basis}\NormalTok{(terms, yield\_data, basis)}
+\FunctionTok{plot}\NormalTok{(terms, yield}\SpecialCharTok{$}\NormalTok{y[,}\DecValTok{1}\NormalTok{], }\AttributeTok{pch=}\DecValTok{15}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Yield"}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{16}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(yield\_smooth, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{6}\NormalTok{)}
+\NormalTok{yield\_par }\OtherTok{\textless{}{-}} \FunctionTok{fdPar}\NormalTok{(basis, }\AttributeTok{Lfdobj =}\DecValTok{2}\NormalTok{, }\AttributeTok{lambda =} \DecValTok{1}\NormalTok{)}
+\NormalTok{yield\_smooth }\OtherTok{\textless{}{-}} \FunctionTok{smooth.basis}\NormalTok{(terms, yield\_data, yield\_par)}
+\FunctionTok{plot}\NormalTok{(yield\_smooth, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+It shows very similar output from a). It is because we are using bspline
+method.
+
+\hypertarget{c-repeat-part-b-with-several-other-smoothing-parameters-ux3bb.-which-ux3bb-gives-the-most-informative-smooth-curve}{%
+\subsubsection{c) Repeat part (b) with several other smoothing
+parameters λ. Which λ gives the most informative smooth
+curve?}\label{c-repeat-part-b-with-several-other-smoothing-parameters-ux3bb.-which-ux3bb-gives-the-most-informative-smooth-curve}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield }\OtherTok{=}\NormalTok{ FedYieldcurve}
+\NormalTok{terms }\OtherTok{=}\NormalTok{ yield}\SpecialCharTok{$}\NormalTok{x}
+\NormalTok{yield\_data }\OtherTok{=}\NormalTok{ yield}\SpecialCharTok{$}\NormalTok{y[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{4}\NormalTok{)}
+\NormalTok{yield\_smooth }\OtherTok{\textless{}{-}} \FunctionTok{smooth.basis}\NormalTok{(terms, yield\_data, basis)}
+\FunctionTok{plot}\NormalTok{(terms, yield}\SpecialCharTok{$}\NormalTok{y[,}\DecValTok{1}\NormalTok{], }\AttributeTok{pch=}\DecValTok{15}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Yield"}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{16}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(yield\_smooth, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{6}\NormalTok{)}
+\NormalTok{yield\_par }\OtherTok{\textless{}{-}} \FunctionTok{fdPar}\NormalTok{(basis, }\AttributeTok{Lfdobj =}\DecValTok{2}\NormalTok{, }\AttributeTok{lambda =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{yield\_smooth }\OtherTok{\textless{}{-}} \FunctionTok{smooth.basis}\NormalTok{(terms, yield\_data, yield\_par)}
+\FunctionTok{print}\NormalTok{(}\StringTok{"lambda = 0.1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "lambda = 0.1"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield\_smooth}\SpecialCharTok{$}\NormalTok{gcv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      rep1 
+## 0.6282152
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(yield\_smooth, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{6}\NormalTok{)}
+\NormalTok{yield\_par }\OtherTok{\textless{}{-}} \FunctionTok{fdPar}\NormalTok{(basis, }\AttributeTok{Lfdobj =}\DecValTok{2}\NormalTok{, }\AttributeTok{lambda =} \FloatTok{0.2}\NormalTok{)}
+\NormalTok{yield\_smooth }\OtherTok{\textless{}{-}} \FunctionTok{smooth.basis}\NormalTok{(terms, yield\_data, yield\_par)}
+\FunctionTok{print}\NormalTok{(}\StringTok{"lambda = 0.2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "lambda = 0.2"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield\_smooth}\SpecialCharTok{$}\NormalTok{gcv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      rep1 
+## 0.6283764
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(yield\_smooth, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{6}\NormalTok{)}
+\NormalTok{yield\_par }\OtherTok{\textless{}{-}} \FunctionTok{fdPar}\NormalTok{(basis, }\AttributeTok{Lfdobj =}\DecValTok{2}\NormalTok{, }\AttributeTok{lambda =} \FloatTok{0.3}\NormalTok{)}
+\NormalTok{yield\_smooth }\OtherTok{\textless{}{-}} \FunctionTok{smooth.basis}\NormalTok{(terms, yield\_data, yield\_par)}
+\FunctionTok{print}\NormalTok{(}\StringTok{"lambda = 0.3"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "lambda = 0.3"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield\_smooth}\SpecialCharTok{$}\NormalTok{gcv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      rep1 
+## 0.6283621
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(yield\_smooth, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{6}\NormalTok{)}
+\NormalTok{yield\_par }\OtherTok{\textless{}{-}} \FunctionTok{fdPar}\NormalTok{(basis, }\AttributeTok{Lfdobj =}\DecValTok{2}\NormalTok{, }\AttributeTok{lambda =} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{yield\_smooth }\OtherTok{\textless{}{-}} \FunctionTok{smooth.basis}\NormalTok{(terms, yield\_data, yield\_par)}
+\FunctionTok{print}\NormalTok{(}\StringTok{"lambda = 0.5"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "lambda = 0.5"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield\_smooth}\SpecialCharTok{$}\NormalTok{gcv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      rep1 
+## 0.6282281
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(yield\_smooth, }\AttributeTok{col =} \StringTok{"purple"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{6}\NormalTok{)}
+\NormalTok{yield\_par }\OtherTok{\textless{}{-}} \FunctionTok{fdPar}\NormalTok{(basis, }\AttributeTok{Lfdobj =}\DecValTok{2}\NormalTok{, }\AttributeTok{lambda =} \DecValTok{1}\NormalTok{)}
+\NormalTok{yield\_smooth }\OtherTok{\textless{}{-}} \FunctionTok{smooth.basis}\NormalTok{(terms, yield\_data, yield\_par)}
+\FunctionTok{print}\NormalTok{(}\StringTok{"lambda = 1.0"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "lambda = 1.0"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield\_smooth}\SpecialCharTok{$}\NormalTok{gcv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      rep1 
+## 0.6277712
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(yield\_smooth, }\AttributeTok{col =} \StringTok{"orange"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{basis }\OtherTok{\textless{}{-}} \FunctionTok{create.bspline.basis}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{330}\NormalTok{), }\AttributeTok{nbasis=}\DecValTok{6}\NormalTok{)}
+\NormalTok{yield\_par }\OtherTok{\textless{}{-}} \FunctionTok{fdPar}\NormalTok{(basis, }\AttributeTok{Lfdobj =}\DecValTok{2}\NormalTok{, }\AttributeTok{lambda =} \DecValTok{2}\NormalTok{)}
+\NormalTok{yield\_smooth }\OtherTok{\textless{}{-}} \FunctionTok{smooth.basis}\NormalTok{(terms, yield\_data, yield\_par)}
+\FunctionTok{print}\NormalTok{(}\StringTok{"lambda = 2.0"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "lambda = 2.0"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yield\_smooth}\SpecialCharTok{$}\NormalTok{gcv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     rep1 
+## 0.626784
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(yield\_smooth, }\AttributeTok{col =} \StringTok{"skyblue"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{verbatim}
+## [1] "done"
+\end{verbatim}
+
+Comparing to the value of GCV, it seems like the case of
+\(\lambda = 0.2\) gives us a best result in this case.
+
+\hypertarget{problem-5}{%
+\subsection{Problem 5}\label{problem-5}}
+
+\hypertarget{a-simulate-a-functional-sample-over-the-unit-interval-each-with-a-sample-size-of-50-from-the-matern-process.-for-the-first-half-of-the-sample-set-the-mean-function-equal-to-the-the-bump-function-with-parameters-c0-r0-a0-38-14-5.-for-the-second-half-use-c0-r0-a0-58-14-5.-you-may-choose-the-values-for-the-matern-covariance-function-as-well-as-the-number-of-points-sampled-per-curve.-plot-all-of-the-curves-and-include-a-curve-for-the-overall-mean-function.}{%
+\subsubsection{(a) Simulate a functional sample over the unit interval
+each with a sample size of 50 from the Mat´ern process. For the first
+half of the sample, set the mean function equal to the the bump function
+with parameters (c0, r0, a0) = (3/8, 1/4, 5). For the second half use
+(c0, r0, a0) = (5/8, 1/4, 5). You may choose the values for the Mat´ern
+covariance function as well as the number of points sampled per curve.
+Plot all of the curves and include a curve for the overall mean
+function.}\label{a-simulate-a-functional-sample-over-the-unit-interval-each-with-a-sample-size-of-50-from-the-matern-process.-for-the-first-half-of-the-sample-set-the-mean-function-equal-to-the-the-bump-function-with-parameters-c0-r0-a0-38-14-5.-for-the-second-half-use-c0-r0-a0-58-14-5.-you-may-choose-the-values-for-the-matern-covariance-function-as-well-as-the-number-of-points-sampled-per-curve.-plot-all-of-the-curves-and-include-a-curve-for-the-overall-mean-function.}}
+
+\hypertarget{b-align-the-curves-using-continuous-registration.-plot-the-resulting-curves-and-include-a-mean-function.-comment-on-any-differences-with-a-and-if-the-registered-curves-exhibit-any-odd-patterns.}{%
+\subsubsection{b) Align the curves using continuous registration. Plot
+the resulting curves and include a mean function. Comment on any
+differences with (a) and if the registered curves exhibit any odd
+patterns.}\label{b-align-the-curves-using-continuous-registration.-plot-the-resulting-curves-and-include-a-mean-function.-comment-on-any-differences-with-a-and-if-the-registered-curves-exhibit-any-odd-patterns.}}
+
+\hypertarget{c-carry-out-an-fpca-with-one-pc-on-the-unaligned-and-aligned-curves-separately.-for-each-do-a-simple-linear-regression-of-the-score-onto-a-dummy-variable-coded-01-indicating-which-type-of-mean-the-function-had-i.e.-is-it-from-the-first-or-second-half-of-the-sample.-calculate-a-p-value-to-determine-if-the-estimated-slope-parameters-you-get-are-significant.-compare-with-the-aligned-and-unaligned-curves.-what-did-aligning-do-to-the-p-value-you-may-want-to-rerun-your-simulations-a-few-times-to-see-how-the-p-values-change.}{%
+\subsubsection{c) Carry out an FPCA with one PC on the unaligned and
+aligned curves separately. For each, do a simple linear regression of
+the score onto a dummy variable (coded 0/1) indicating which type of
+mean the function had (i.e.~is it from the first or second half of the
+sample). Calculate a p-value to determine if the estimated slope
+parameters you get are significant. Compare with the aligned and
+unaligned curves. What did aligning do to the p-value? You may want to
+rerun your simulations a few times to see how the p-values
+change.}\label{c-carry-out-an-fpca-with-one-pc-on-the-unaligned-and-aligned-curves-separately.-for-each-do-a-simple-linear-regression-of-the-score-onto-a-dummy-variable-coded-01-indicating-which-type-of-mean-the-function-had-i.e.-is-it-from-the-first-or-second-half-of-the-sample.-calculate-a-p-value-to-determine-if-the-estimated-slope-parameters-you-get-are-significant.-compare-with-the-aligned-and-unaligned-curves.-what-did-aligning-do-to-the-p-value-you-may-want-to-rerun-your-simulations-a-few-times-to-see-how-the-p-values-change.}}
+
+\hypertarget{d-come-up-with-one-potential-settingapplication-where-you-might-lose-something-if-you-align.-make-up-whatever-scenario-you-like-but-think-it-through.}{%
+\subsubsection{d) Come up with one potential setting/application where
+you might lose something if you align. Make up whatever scenario you
+like, but think it
+through.}\label{d-come-up-with-one-potential-settingapplication-where-you-might-lose-something-if-you-align.-make-up-whatever-scenario-you-like-but-think-it-through.}}
+
+\end{document}

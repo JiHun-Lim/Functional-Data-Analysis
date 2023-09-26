@@ -1,0 +1,239 @@
+---
+title: "HW1"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include = TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fds)
+library(fda)
+library(ggplot2)
+library(fields)
+library(expm)
+```
+
+# Chapter 1
+
+## Problem 1
+
+### a) Convert the pinch data to functional objects using 15 B-splines of order four (cubic splines) and plot the 20 smoothed curves on one graph.
+
+```{r}
+time = pinchtime
+basis <- create.bspline.basis(c(0,0.3),nbasis=15, norder = 4)
+pinch.F<-Data2fd(time, pinch, basis)
+plot(pinch.F)
+```
+
+### b) Calculate the pointwise mean and SD and add them to the plot.
+```{r}
+mean.fd(pinch.F)
+std.fd(pinch.F)
+plot(pinch.F, col = "grey")
+plot(mean.fd(pinch.F), lwd =2, add = TRUE)
+plot(std.fd(pinch.F), lwd =2, add = TRUE, col = "red")
+```
+
+### c) Graph the perspective and contour plots of the sample covariance function ˆc(t, s) of the pinch curves.
+```{r}
+pinch_var<-var.fd(pinch.F)
+pts<-seq(from=0, to=0.3, length = 50)
+pinch_mat = eval.bifd(pts, pts, pinch_var)
+persp(pts, pts, pinch_mat)
+contour(pts, pts, pinch_mat)
+```
+
+### d) Graph the first four EFPC’s of the pinch data. How many components do you need to explain 90% of variation?
+```{r}
+pinch.pca = pca.fd(pinch.F, nharm=4)
+pinch.pca$varprop
+```
+
+We need 2 components to explain 90% of variation.
+
+## Problem 2
+
+### a)  On one graph, plot the interest rates x(tj ) for January 1982 and for June 2009 against the maturity terms tj . How do the interest rates in these two months compare?
+
+```{r}
+yield = FedYieldcurve
+terms = yield$x
+plot(terms, yield$y[,1], pch=15, ylab="Yield", ylim=c(0,16))
+points(terms, yield$y[,330], pch=16)
+```
+
+The interest rates for January 1982 is much bigger than the interest rates for June 2009.
+
+### b) Convert the yield data to functional objects using bspline basis with four basis functions. Calculate and plot the the mean yield function. What is the average behavior of interest rates as a function of the maturity?
+
+```{r}
+yield_data = yield$y
+basis <- create.bspline.basis(c(0,330), nbasis=4)
+yield.F <- Data2fd(terms, yield_data, basis)
+plot(yield.F)
+plot(yield.F, col = "grey")
+plot(mean.fd(yield.F), lwd =4, add = TRUE)
+mean.fd(yield.F)
+```
+It increases as time increases and then decreases at a certain point. This curve is well known as a yield curve.
+
+### c) Plot the first principal component of the interest rate curves. What percentage of variance does this component explain? Interpret the plot and the percentage of variance.
+
+```{r}
+yield.pca = pca.fd(yield.F, nharm=1)
+plot(yield.pca$harmonics)
+yield.pca$varprop
+```
+The the component explains 99.99981% of the varaince. It means that it can be well explained by bspline basis.
+
+## Problem 6
+
+Since 
+<!-- \[ -->
+<!-- \hat{c}(t,s) = \frac{1}{N-1}\sum_{n}\sum_{m}\sum_{k}\bar{c}_{nm}\bar{c}_{nk}B_{m}(t)B_{k}(s) \\ -->
+<!-- = \frac{1}{N-1}\sum_{m}\sum_{k}(\mathbf{a}^\top \mathbf{a})_{m,k}B_{m}(t)B_{k}(s) \\ -->
+<!-- = \sum_{m}\sum_{k}(\Sigma_{\mathbf{a}})_{m,k}B_{m}(t)B_{k}(s), -->
+<!-- \] -->
+<!-- we can say that $\mathbf{b} = (N-1)\mathbf{a}^\top \mathbf{a}$, so $b_{mk} = (N-1)a_{m}a_{k}$. (In fact, you only need to worry about the $b_{mm}$ case.) -->
+
+# Chapter 2
+
+## Problem 1
+Since
+
+<!-- \[L(x)(t) = \omega^{2}\sum_{j=1}^{J}(\omega j a_{j}\cos(\omega jt) - \omega j b_{j}\sin(\omega jt)) + \sum_{j=1}^{J}(-\omega^{3} j^{3} a_{j}\cos(\omega jt) + \omega^{3} j^{3} b_{j}\sin(\omega jt))\] -->
+<!-- \[= \omega^{3}(j^{3}-j)\sum_{j=1}^{J}(-a_{j}\cos(\omega jt) + b_{j}\sin(\omega jt)), -->
+<!-- \] -->
+
+<!-- \[ \int_{0}^{T} [L(x)(t)]^{2}dt = \int_{0}^{T} ( \omega^{3}(j^{3}-j))^{2}(\sum_{j=1}^{J}(-a_{j}\cos(\omega jt) + b_{j}\sin(\omega jt)) )^{2} dt \] -->
+<!-- \[= \omega^{6}j^{2}(j^{2}-1)^{2} \int_{0}^{T} \sum_{j=1}^{J}(-a_{j}\cos(\omega jt) + b_{j}\sin(\omega jt) )^{2} dt \\ -->
+<!-- = \pi\omega^{5}j^{2}(j^{2}-1)^{2} \sum_{j=2}^{J}(a_{j}^{2} + b_{j}^{2}) -->
+<!-- \] -->
+
+
+## Problem 2
+
+### a) Smooth the interest rates (yields) in January 1982 using a B–spline basis with four basis functions. Plot the raw and smoothed interest rates on one graph.
+
+```{r}
+yield = FedYieldcurve
+terms = yield$x
+yield_data = yield$y[,1]
+basis <- create.bspline.basis(c(0,330), nbasis=4)
+yield_smooth <- smooth.basis(terms, yield_data, basis)
+plot(terms, yield$y[,1], pch=15, ylab="Yield", ylim=c(0,16))
+plot(yield_smooth, add = TRUE)
+```
+### b)  Re–fit the January 1982 yields using a penalized smoothing based on six basis functions (as many as data points) with with the smoothing parameter λ = 1, and the second derivative as the penalty operator. Add the smooth in red to the graph you obtained in part (a) and comment on the result.
+
+```{r}
+yield = FedYieldcurve
+terms = yield$x
+yield_data = yield$y[,1]
+basis <- create.bspline.basis(c(0,330), nbasis=4)
+yield_smooth <- smooth.basis(terms, yield_data, basis)
+plot(terms, yield$y[,1], pch=15, ylab="Yield", ylim=c(0,16))
+plot(yield_smooth, add = TRUE)
+basis <- create.bspline.basis(c(0,330), nbasis=6)
+yield_par <- fdPar(basis, Lfdobj =2, lambda = 1)
+yield_smooth <- smooth.basis(terms, yield_data, yield_par)
+plot(yield_smooth, col = "red", add = TRUE)
+```
+
+It shows very similar output from a). It is because we are using bspline method.
+
+
+### c) Repeat part (b) with several other smoothing parameters λ. Which λ gives the most informative smooth curve?
+
+```{r}
+yield = FedYieldcurve
+terms = yield$x
+yield_data = yield$y[,1]
+basis <- create.bspline.basis(c(0,330), nbasis=4)
+yield_smooth <- smooth.basis(terms, yield_data, basis)
+plot(terms, yield$y[,1], pch=15, ylab="Yield", ylim=c(0,16))
+plot(yield_smooth, add = TRUE)
+basis <- create.bspline.basis(c(0,330), nbasis=6)
+yield_par <- fdPar(basis, Lfdobj =2, lambda = 0.1)
+yield_smooth <- smooth.basis(terms, yield_data, yield_par)
+print("lambda = 0.1")
+yield_smooth$gcv
+plot(yield_smooth, col = "red", add = TRUE)
+basis <- create.bspline.basis(c(0,330), nbasis=6)
+yield_par <- fdPar(basis, Lfdobj =2, lambda = 0.2)
+yield_smooth <- smooth.basis(terms, yield_data, yield_par)
+print("lambda = 0.2")
+yield_smooth$gcv
+plot(yield_smooth, col = "blue", add = TRUE)
+basis <- create.bspline.basis(c(0,330), nbasis=6)
+yield_par <- fdPar(basis, Lfdobj =2, lambda = 0.3)
+yield_smooth <- smooth.basis(terms, yield_data, yield_par)
+print("lambda = 0.3")
+yield_smooth$gcv
+plot(yield_smooth, col = "green", add = TRUE)
+basis <- create.bspline.basis(c(0,330), nbasis=6)
+yield_par <- fdPar(basis, Lfdobj =2, lambda = 0.5)
+yield_smooth <- smooth.basis(terms, yield_data, yield_par)
+print("lambda = 0.5")
+yield_smooth$gcv
+plot(yield_smooth, col = "purple", add = TRUE)
+basis <- create.bspline.basis(c(0,330), nbasis=6)
+yield_par <- fdPar(basis, Lfdobj =2, lambda = 1)
+yield_smooth <- smooth.basis(terms, yield_data, yield_par)
+print("lambda = 1.0")
+yield_smooth$gcv
+plot(yield_smooth, col = "orange", add = TRUE)
+basis <- create.bspline.basis(c(0,330), nbasis=6)
+yield_par <- fdPar(basis, Lfdobj =2, lambda = 2)
+yield_smooth <- smooth.basis(terms, yield_data, yield_par)
+print("lambda = 2.0")
+yield_smooth$gcv
+plot(yield_smooth, col = "skyblue", add = TRUE)
+```
+
+Comparing to the value of GCV, it seems like the case of $\lambda = 0.2$ gives us a best result in this case.
+
+## Problem 5
+
+### a) Simulate a functional sample over the unit interval each with a sample size of 50 from the Mat´ern process. For the first half of the sample, set the mean function equal to the the bump function with parameters (c0, r0, a0) = (3/8, 1/4, 5). For the second half use (c0, r0, a0) = (5/8, 1/4, 5). You may choose the values for the Mat´ern covariance function as well as the number of points sampled per curve. Plot all of the curves and include a curve for the overall mean function.
+
+
+### b) Align the curves using continuous registration. Plot the resulting curves and include a mean function. Comment on any differences with (a) and if the registered curves exhibit any odd patterns.
+
+### c) Carry out an FPCA with one PC on the unaligned and aligned curves separately. For each, do a simple linear regression of the score onto a dummy variable (coded 0/1) indicating which type of mean the function had (i.e. is it from the first or second half of the sample). Calculate a p-value to determine if the estimated slope parameters you get are significant. Compare with the aligned and unaligned curves. What did aligning do to the p-value? You may want to rerun your simulations a few times to see how the p-values change.
+
+### d) Come up with one potential setting/application where you might lose something if you align. Make up whatever scenario you like, but think it through.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
