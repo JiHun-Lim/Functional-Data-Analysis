@@ -1,0 +1,295 @@
+\documentclass{article}
+
+\usepackage{amsmath, amscd, amsthm}
+\usepackage{latexsym, amssymb, amsfonts}
+\usepackage{kotex}
+\usepackage{color}
+\usepackage{url}
+\usepackage{tikz-cd}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+
+\setcounter{MaxMatrixCols}{10}
+\numberwithin{equation}{section}
+
+\def\problem{\par\noindent{\bf Problem Statement.\ } \ignorespaces}  % 문제 표시
+\def\endproblemstatement{}
+
+\def\mysol{\par\noindent{\bf My Solution.\ } \ignorespaces}   % 답안 표시 
+\def\endproblemstatement{}
+
+\setlength{\textheight}{9.0in} \setlength{\textwidth}{35pc}
+\setlength{\topmargin}{-.1in} \setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{\oddsidemargin}
+
+\setlength{\parindent}{1.5em}
+%\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.3}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{HW2}
+\author{ 2022020428 Jihun Lim}
+\date{2023. 10. 10. }
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%
+Homework problems are listed below.
+\begin{itemize}
+\item  Chapter 10: 2, 6, 10, 12.
+\item  Chapter 11: 5, 9, 14. 
+\end{itemize}
+
+
+\section{Chapter 10: Elements of Hilbert space theory}
+
+Problem $2, 6, 10, 12$.
+
+
+\subsection{Problem 2}
+
+\begin{problem}
+Show that in any inner product space, the function $y \mapsto \langle x,y \rangle$ is
+continuous. ($x$ is an arbitrary vector.)
+
+\end{problem}
+
+\begin{mysol}
+Let $f$ be the functional satisfying $f(y) = \langle y,x \rangle$ for all $y$.
+It is clear that $f$ is a linear functional since for arbitrary constant $\alpha,$ $$ f(\alpha y) = \langle \alpha y,x \rangle = \alpha \langle y,x \rangle = \alpha f(y).$$
+Using the Cauchy-Schwarz inequality, we can say $$\vert f(y) \vert \leq \vert x \vert \vert y \vert = M\vert y \vert.$$
+Since $x$ is a fixed vector, we can say that $\vert f(y) \vert$ is bounded by $M\vert y \vert$ with some constant $M$. 
+Since bounded linear functionals are continuous, we can say $f$ is continuous.
+\end{mysol}
+
+\subsection{Problem 6}
+
+\begin{problem}
+Suppose $\{e_{j}, j \geq 1\}$ is a complete orthonormal sequence in a Hilbert space.
+Show that if $\{f_{j}, j \geq 1 \}$ is an orthonormal sequence satisfying $$\sum_{j=1}^{\infty}  {\lVert e_{j} - f_{j}\rVert}^{2} < 1,$$
+then $\{f_{j}, j \geq 1 \}$ is also complete.
+
+\end{problem}
+
+\begin{mysol}
+Since ${e_{j}}$ is a complete orthonormal sequence in a Hilbert space, for all $\epsilon$ there exist $N$ s.t.
+$$ \lVert e_{n} - e_{m}\rVert < \frac{\epsilon}{3} \quad \forall n, m > N .$$
+Also, since $\sum_{j=1}^{n}  {\lVert e_{j} - f_{j}\rVert}^{2} $ is increasing but bounded by $1$,
+it converges and $ {\lVert e_{j} - f_{j}\rVert}^{2} $ goes to $0$ when $n$ goes to $\infty$, which means for all $\epsilon$ there exists $M$ s.t.
+$$ \lVert e_{j} - f_{j}\rVert < \frac{\epsilon}{3} \quad \forall j > M .$$
+Then, for all $\epsilon$ there exists $K = max(N, M)$ s.t.
+$$ \lVert f_{n} - f_{m}\rVert \leq 
+\lVert f_{n} - e_{n}\rVert + \lVert e_{n} - e_{m}\rVert + \lVert e_{m} - f_{m}\rVert
+< \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon \quad \forall n, m > K ,$$
+which means $\{f_{j}\}$ is complete.
+
+\end{mysol}
+
+\subsection{Problem 10}
+
+\begin{problem}
+Suppose $\{e_{j}, j \geq 1 \}$ and $\{f_{j}, j \geq 1 \}$ are orthonormal bases in $\mathcal{H}$.
+Show that for any Hilbert-Schmidt operators $\Psi, \Phi$
+$$\sum_{i=1}^{\infty} \langle \Psi(f_{i}), \Phi(f_{i}) \rangle = 
+\sum_{i=1}^{\infty} \langle \Psi(e_{i}), \Phi(e_{i}) \rangle .$$
+\end{problem}
+
+\begin{mysol}
+Let $x = \sum_{i=1}^{\infty} f_{i} = \sum_{i=1}^{\infty} e_{i}$.
+Then, $$\langle \Psi(x), \Phi(x) \rangle = 
+\langle \Psi(\sum_{i=1}^{\infty} f_{i}), \Phi(\sum_{i=1}^{\infty} f_{i}) \rangle
+= \sum_{i=1}^{\infty} \langle \Psi(f_{i}), \Phi(f_{i}) \rangle,
+$$
+and
+$$\langle \Psi(x), \Phi(x) \rangle = 
+\langle \Psi(\sum_{i=1}^{\infty} e_{i}), \Phi(\sum_{i=1}^{\infty} e_{i}) \rangle
+= \sum_{i=1}^{\infty} \langle \Psi(e_{i}), \Phi(e_{i}) \rangle,
+$$
+since
+$$ \langle \Psi(f_{i}), \Phi(f_{j}) \rangle = \langle \Psi(e_{i}), \Phi(e_{j}) \rangle
+= 0 \quad for \quad i \neq j .$$
+Therefore,
+$$\sum_{i=1}^{\infty} \langle \Psi(f_{i}), \Phi(f_{i}) \rangle = 
+\langle \Psi(x), \Phi(x) \rangle = 
+\sum_{i=1}^{\infty} \langle \Psi(e_{i}), \Phi(e_{i}) \rangle .$$
+
+
+
+
+\end{mysol}
+
+
+
+\subsection{Problem 12}
+
+\begin{problem}
+Show that if $L$ is bounded then $L^{*}$ is also bounded, and
+$$ {\lVert L^{*} \rVert}_{\mathcal{L}} = {\lVert L \rVert}_{\mathcal{L}}, \quad
+{\lVert L^{*}L \rVert}_{\mathcal{L}} = {\lVert L \rVert}^{2}_{\mathcal{L}}.
+$$
+\end{problem}
+
+\begin{mysol}
+For an arbitrary vector $h$ in $\mathcal{H}$, with $\lVert h \rVert \leq 1$,
+$$
+{\lVert Lh \rVert}^{2} = \langle Lh, Lh \rangle = \langle L^{*}Lh, h \rangle
+\leq \lVert L^{*}Lh \rVert \lVert h \rVert \leq \lVert L^{*}L \rVert \leq \lVert L^{*} \rVert \lVert L \rVert .
+$$
+Letting $\lVert h \rVert = 1$ gives us
+$$ {\lVert L \rVert}^{2} \leq \lVert L^{*}L \rVert \leq \lVert L^{*} \rVert \lVert L \rVert, \quad \lVert L \rVert \leq \lVert L^{*} \rVert .$$
+We can do the same thing for $\lVert L \rVert$, and since $L^{**} = L$, 
+$$
+{\lVert L^{*}h \rVert}^{2} = \langle L^{*}h, L^{*}h \rangle = \langle LL^{*}h, h \rangle
+\leq \lVert LL^{*}h \rVert \lVert h \rVert \leq \lVert LL^{*} \rVert \leq \lVert L \rVert \lVert L^{*} \rVert,
+$$
+and
+$$ {\lVert L^{*} \rVert}^{2} \leq \lVert LL^{*} \rVert \leq \lVert L \rVert \lVert L^{*} \rVert, \quad \lVert L^{*} \rVert \leq \lVert L \rVert .$$
+Then, 
+$$ \lVert L \rVert = \lVert L^{*} \rVert , \lVert L^{*}L \rVert = \lVert LL^{*} \rVert = {\lVert L \rVert}^{2} $$
+
+\end{mysol}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\bigskip
+
+\section{Chapter 11: Random Functions}
+
+Problem $5, 9, 14$.
+
+
+\subsection{Problem 5}
+
+\begin{problem}
+Suppose $Y_{k,n}, Y_{k}$ are random varaibles such that for every $M \geq 1$,
+$$
+{[Y_{1,n}, Y_{2,n}, \cdots , Y_{M,n}]}^{T} \overset{P}{\to}
+{[Y_{1}, Y_{2}, \cdots , Y_{M}]}^{T}
+$$
+in the Euclidean space $\mathbb{R}^{M}$.
+Suppose $\{w_{k}, k \geq 1 \}$ is a sequence of numbers such that
+$$\sum_{k=1}^{\infty} \lvert w_{k} \rvert E \lvert Y_{k} \rvert < \infty \quad and \quad 
+\sum_{k=1}^{\infty} \lvert w_{k} \rvert \sup_{n \geq 1} E \lvert Y_{k,n} - Y_{k} \rvert < \infty .
+$$
+Using Theorem 11.1.3, show that $\sum_{k=1}^{\infty} w_{k}Y_{k,n} \overset{d}{\to} \sum_{k=1}^{\infty} w_{k}Y_{k}$.
+
+\begin{theorem}
+(Theorem 11.1.3) : 
+Suppose that for each $u$, $X_{n}(u) \overset{d}{\to} X(u) (n \to \infty) $, and
+$X(u) \overset{d}{\to} X (u \to \infty) $. If
+
+$$
+\lim_{u \to \infty} \limsup_{n \to \infty} P(d(X_{n}(u), X_{n}) > \epsilon) = 0,
+$$
+then $X_{n} \overset{d}{\to} X.$
+\end{theorem}
+
+
+
+
+
+
+
+\end{problem}
+
+\begin{mysol}
+Since $\sum_{k=1}^{m} \lvert w_{k} \rvert E \lvert Y_{k} \rvert $ is a increasing sequence and bounded,
+we can say
+$$
+\lvert w_{k} \rvert E \lvert Y_{k} \rvert \rightarrow 0 \quad as \quad k \rightarrow \infty.
+$$
+Also, since $\sum_{k=1}^{m} \lvert w_{k} \rvert \sup_{n \geq 1} E \lvert Y_{k,n} - Y_{k} \rvert$ is a increasing sequence and bounded, we can say
+$$
+\lvert w_{k} \rvert \sup_{n \geq 1} E \lvert Y_{k,n} - Y_{k} \rvert \rightarrow 0 \quad as \quad k \rightarrow \infty.
+$$
+Using the property of supremum, we can say 
+$$
+\lvert w_{k} \rvert E \lvert Y_{k,n} - Y_{k} \rvert \rightarrow 0 \quad as \quad n \rightarrow \infty,.
+$$
+Then by using the fact that $ \sum_{k=1}^{m}w_{k} Y_{k,n} \overset{d}{\to} \sum_{k=1}^{m}w_{k} Y_{k} \ as \ n \to \infty$ and $ \sum_{k=1}^{m}w_{k} Y_{k} \overset{d}{\to} \sum_{k=1}^{\infty}w_{k} Y_{k} \ as \ m \to \infty$, we can say
+$$
+\lim_{m \to \infty} \limsup_{n \to \infty} P(d( \sum_{k=1}^{m}w_{k}Y_{k,n}, \sum_{k=1}^{m}w_{k}Y_{k}) > \epsilon) = 0.
+$$
+Then by using Theorem 11.1.3,
+$$\sum_{k=1}^{\infty} w_{k}Y_{k,n} \overset{d}{\to} \sum_{k=1}^{\infty} w_{k}Y_{k}.$$
+
+
+
+\end{mysol}
+
+\subsection{Problem 9}
+
+\begin{problem}
+Suppose $\mathcal{H}$ is an infinite dimensional separable Hilbert space and 
+$\{e_{j}, j \geq 1 \}$ is an orthonormal system. Define the operator $\Psi$ by
+$$
+\Psi(x) = \sum_{j=1}^{\infty} j^{-1} \langle x, e_{j} \rangle e_{j}.
+$$
+Show that $\Psi$ is bounded, symmetric and nonnegative definite, but it is not a covariance operator.
+\end{problem}
+
+\begin{mysol}
+Since $j^{-1}$ is a decreasing sequence, $$\lVert \Psi \rVert = \sup_{\lVert x \rVert \geq 1} \lVert \Psi(x) \rVert = 1 < \infty ,$$ 
+which means $\Psi$ is bounded.
+Also, since 
+$$
+\langle \Psi(x),y \rangle
+= \langle \sum_{j=1}^{\infty} j^{-1} \langle x, e_{j} \rangle e_{j} , y \rangle
+= \sum_{j=1}^{\infty} j^{-1} \langle x, e_{j} \rangle \langle e_{j},y  \rangle
+= \langle  x, \sum_{j=1}^{\infty} j^{-1} \langle y, e_{j} \rangle e_{j} \rangle 
+= \langle x,\Psi(y) \rangle ,
+$$
+$\Psi$ is symmetric.
+Letting $y = x$ for the previous equation gives us the result of
+$$
+\langle \Psi(x),x \rangle
+= \sum_{j=1}^{\infty} j^{-1} {\langle x, e_{j} \rangle}^{2} \geq 0,
+$$
+which means $\Psi$ is nonnegative definite.
+However, $\Psi$ is not a covariance operator since it is not a trace class operator,
+$$
+\sum_{j=1}^{\infty} j^{-1} \nless \infty .
+$$
+
+\end{mysol}
+
+\subsection{Problem 14}
+
+\begin{problem}
+Suppose X satisfies Definition 11.3.2 and $L$ be a bounded operator. Show that $L(X)$ is Gaussian; find its expected value and covariance operator. \\
+\begin{definition}
+(Definition 11.3.2) : A random function $X$ is said to be Gaussian if its characteristic functional has the form
+$$
+\varphi_{X}(y) = \exp \big\{ i \langle \mu, y \rangle - \frac{1}{2} \langle C(y), y \rangle \big\},
+$$
+where $\mu \in \mathcal{H}$ and $C$ is a covariance operator.
+\end{definition}
+
+\end{problem}
+
+\begin{mysol}
+Since characteristic functional of a random function $L(X)$ can be expressed as
+$$
+\varphi_{L(X)}(y) 
+= E \exp \{ i \langle y,L(X) \rangle \}
+= E \exp \{ i \langle L^{*}(y),X \rangle \},
+$$
+by using Definition 11.3.2, we can say
+$$
+\varphi_{L(X)}(y) 
+= \exp \big\{ i \langle \mu, L^{*}y \rangle - \frac{1}{2} \langle C(L^{*}y), L^{*}y \rangle \big\}
+= \exp \big\{ i \langle L(\mu), y \rangle - \frac{1}{2} \langle L(C(L^{*}y)), y \rangle \big\}.
+$$
+Then, $L(X)$ is indeed a Gaussain. The expected value is $L(\mu)$ and the covariance operator is $LCL^{*}$.
+\end{mysol}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
