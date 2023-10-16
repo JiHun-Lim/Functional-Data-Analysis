@@ -1,0 +1,192 @@
+\documentclass{article}
+
+\usepackage{amsmath, amscd, amsthm}
+\usepackage{latexsym, amssymb, amsfonts}
+\usepackage{kotex}
+\usepackage{color}
+\usepackage{url}
+\usepackage{tikz-cd}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+
+\setcounter{MaxMatrixCols}{10}
+\numberwithin{equation}{section}
+
+\def\problem{\par\noindent{\bf Problem Statement.\ } \ignorespaces}  % 문제 표시
+\def\endproblemstatement{}
+
+\def\mysol{\par\noindent{\bf My Solution.\ } \ignorespaces}   % 답안 표시 
+\def\endproblemstatement{}
+
+\setlength{\textheight}{9.0in} \setlength{\textwidth}{35pc}
+\setlength{\topmargin}{-.1in} \setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{\oddsidemargin}
+
+\setlength{\parindent}{1.5em}
+%\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.3}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{HW3}
+\author{ 2022020428 Jihun Lim}
+\date{2023. 10. 17. }
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%
+Homework problems are listed below.
+\begin{itemize}
+\item  Chapter 12: 2, 5, 6, 7, 12.
+\end{itemize}
+
+
+\section{Chapter 12: Inference from a random sample}
+
+Problem $2, 5, 6, 7, 12$.
+
+\subsection{Problem 2}
+
+\begin{problem}
+Show that for every eigenvalue $\lambda$ of a bounded operator $L$, 
+we have $ \vert \lambda \vert \leq { \lVert L \rVert}_{ \mathcal{L} }.$
+\end{problem}
+
+\begin{mysol}
+For 
+$$
+L(x) = \sum_{i=1}^{\infty} \lambda_{i} \langle x, v_{i} \rangle v_{i},
+$$
+we can say that
+$$
+{ \lVert L(x) \rVert }^{2} = \sum_{i=1}^{\infty} \lambda_{i}^{2} {\langle x, v_{i} \rangle}^{2} \leq \lambda_{max}^{2} {\lVert x \rVert }^{2}, \quad \lVert L(x) \rVert \leq \lambda_{max} \lVert x \rVert .
+$$
+Since 
+$${ \lVert L \rVert}_{ \mathcal{L} } = \sup_{\lVert x \rVert \leq 1} \lVert L(x) \rVert ,$$
+by using the definition of supremum we can say
+$${ \lVert L \rVert}_{ \mathcal{L} } = \lambda_{max} \geq \vert \lambda \vert ,$$
+for all $\lambda$.
+
+\end{mysol}
+
+\subsection{Problem 5}
+
+\begin{problem}
+
+Assume that $X_{1}, \ldots, X_{N}$ are iid elements of $L^{2}[0,1]$ with $E{\lVert X_{n} \rVert}^{4} < \infty$ and whose first $p$ eigenvalues are distinct. Prove that $$\vert N \langle \hat{v}_{j} - v_{j}, v_{j} \rangle \vert = O_{P}(1), \quad \text{for} \ j = 1, \ldots p.$$
+Why is this a seemingly unusual convergence rate? (Hint: $\vert \langle \hat{v}_{j} - v_{j}, v_{j} \rangle \vert = \frac{1}{2}{\lVert \hat{v}_{j} - v_{j} \rVert}^{2}$)
+
+\end{problem}
+
+\begin{mysol}
+Since $\vert \langle \hat{v}_{j} - v_{j}, v_{j} \rangle \vert = \frac{1}{2}{\lVert \hat{v}_{j} - v_{j} \rVert}^{2},$
+$$
+\vert N \langle \hat{v}_{j} - v_{j}, v_{j} \rangle \vert = \frac{N}{2}{\lVert \hat{v}_{j} - v_{j} \rVert}^{2}.
+$$
+Also, since $X_{1}, \ldots, X_{N}$ are iid elements of $L^{2}[0,1]$ with $E{\lVert X_{n} \rVert}^{4} < \infty$ with distinct $p$ eigenvalues, we can say that
+$$
+N^{1/2}(\hat{v}_{j} - v_{j}) = T_{jN} + o_{P}(1) \quad \text{for} \quad T_{jN} = \sum_{k \neq j}{(\lambda_{j} - \lambda_{k} )}^{-1} \langle Z_{N}, v_{k} \otimes v_{j} \rangle v_{k}.
+$$
+Then, 
+$$
+\vert N \langle \hat{v}_{j} - v_{j}, v_{j} \rangle \vert 
+= \frac{1}{2} { \lVert N^{1/2} ( \hat{v}_{j} - v_{j} )\rVert}^{2}
+= \frac{1}{2} { \lVert T_{jN} + o_{P}(1) \rVert}^{2}
+= o_{P}(1)
+= O_{P}(1).
+$$
+It seems unusual because the expected values $$E {\lVert \hat{\mu} - \mu \rVert}^{2}, 
+E {\lVert \hat{C} - C \rVert}^{2}, E {\lVert \hat{v}_{j} - v_{j} \rVert}^{2}, E {\lVert \hat{\lambda}_{j} - \lambda_{j} \rVert}^{2},$$
+are all $O(N^{-1})$.
+
+
+\end{mysol}
+
+\subsection{Problem 6}
+
+\begin{problem}
+Prove Theorem 12.1.3.
+
+\begin{theorem}
+(Theorem 12.1.3) : 
+Let $x, y \in \mathcal{H}$, then
+$$
+{\lVert x \otimes y \rVert}_{\mathcal{H} \otimes \mathcal{H}} = {\lVert \langle y, \cdot \rangle x \rVert}_{\mathcal{S}}.
+$$
+\end{theorem}
+
+\end{problem}
+
+\begin{mysol}
+Since 
+$$
+{\lVert x \otimes y \rVert}_{\mathcal{H} \otimes \mathcal{H}}^{2}
+= {\langle x \otimes y , x \otimes y\rangle}_{\mathcal{H} \otimes \mathcal{H}}
+= {\langle x, x \rangle}_{\mathcal{H}} {\langle y, y \rangle}_{\mathcal{H}}
+= {\langle \langle x, y \rangle, \langle x, y \rangle \rangle}_{\mathcal{S}}
+= {\langle \langle y, \cdot \rangle x, \langle y, \cdot \rangle x \rangle}_{\mathcal{S}}
+= {\lVert \langle y, \cdot \rangle x \rVert}_{\mathcal{S}}^{2},
+$$
+we can say that
+$$
+{\lVert x \otimes y \rVert}_{\mathcal{H} \otimes \mathcal{H}} =  {\lVert \langle y, \cdot \rangle x \rVert}_{\mathcal{S}}.
+$$
+
+\end{mysol}
+
+\subsection{Problem 7}
+
+\begin{problem}
+Suppose that the data $\{ X_{n}(t) : t \in [0,1], 1 \leq n \leq N \}$ are expressed using an orthonormal basis $e_{1}, \ldots, e_{j}$ : 
+$$
+X_{n}(t) = \sum_{j=1}^{J} x_{nj}e_{j}(t).
+$$
+In this case, the EFPC's, $\hat{v_{i}}(t)$, can also be expressed as 
+$$
+\hat{v_{i}}(t) = \sum_{j=1}^{J} \hat{v}_{ij}e_{j}(t).
+$$
+Explain how to obtain the coefficients $\hat{v}_{ij}$ from the $x_{nj}$. Justify your answer.
+\end{problem}
+
+\begin{mysol}
+For 
+$$
+X_{n}(t) = \hat{\mu}(t) + \sum_{i=1}^{\infty} \hat{\xi}_{ni} \hat{v}_{i}(t),
+$$
+we can say
+$$
+X_{n}(t)
+= \hat{\mu}(t) + \sum_{i=1}^{\infty} \hat{\xi}_{ni} \sum_{j=1}^{J} \hat{v}_{ij}e_{j}(t)
+= \hat{\mu}(t) + \sum_{j=1}^{J} e_{j}(t) \times \sum_{i=1}^{\infty} \hat{\xi}_{ni}\hat{v}_{ij}
+= \sum_{j=1}^{J} x_{nj}e_{j}(t).
+$$
+Then, we can say that
+$$
+x_{nj} = \sum_{i=1}^{\infty} \hat{\xi}_{ni}\hat{v}_{ij} + \hat{\mu}(t) e_{j}(t).
+$$
+
+
+\end{mysol}
+
+\subsection{Problem 12}
+
+\begin{problem}
+Under the same assumptions as in Problem 12.8.5 show that, for $j \neq k$, and $1 \leq j \leq p$,
+$$
+\langle \hat{v}_{j} - v_{j}, v_{k} \rangle = \frac{\langle \hat{C} - C, \hat{v_{j}} \otimes v_{k} \rangle }{\hat{\lambda}_{j} - \lambda_{k}}.
+$$
+\end{problem}
+What can you conclude about the asymptotic distribution of $N^{1/2}\langle \hat{v}_{j} - v_{j}, v_{k} \rangle $?
+
+
+\begin{mysol}
+
+\end{mysol}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
